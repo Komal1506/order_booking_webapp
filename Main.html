@@ -124,25 +124,6 @@
             class="mt-1 p-2 w-full border border-black rounded-md bg-gray-100"
           />
         </div>
-        <div class="container mx-auto mt-8 p-4 bg-white w-screen shadow-md bg-blue-300">
-          <h1 class="text-2xl font-bold mb-4">Item Form</h1>
-          <form id="itemForm" class="max-w-md">
-              <!-- Form fields -->
-              <!-- Add button to open modal -->
-              <button id="openModal" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"> FirstAdd</button>
-          </form>
-      
-          <!-- Modal Dialog -->
-          <dialog id="modal" class="bg-white border border-gray-300 rounded-md p-4 shadow-md">
-              <h2 class="text-xl font-bold mb-4">Add Group</h2>
-              <label for="groupName" class="block text-sm font-medium text-gray-600">Group Name:</label>
-              <input type="text" id="groupName" name="groupName" class="mt-1 p-2 w-full border border-black rounded-md bg-gray-100 mb-2" />
-              <label for="groupCode" class="block text-sm font-medium text-gray-600">Group Code:</label>
-              <input type="text" id="groupCode" name="groupCode" class="mt-1 p-2 w-full border border-black rounded-md bg-gray-100 mb-4" />
-              <button id="addGroupBtn" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Add Group</button>
-              <button id="closeModal" class="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-red-300 ml-2">Close</button>
-          </dialog>
-      </div      
         <h2>Departments</h2>
         <div class="container mb-4 w-screen flex shadow-md">
           <div class="w-full">
@@ -465,7 +446,7 @@
             />
           </div>
         </div>
-
+        
         <button
           type="submit"
           class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
@@ -489,7 +470,8 @@
             <button id="searchButton" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Search</button>
         </div>
     </div>
- 
+         
+
 
     <script>
       document
@@ -512,52 +494,8 @@
         submenu.classList.add("hidden");
       });
     </script>
+
     
-  <script> 
-  document.getElementById("openModal").addEventListener("click", function () {
-    document.getElementById("modal").showModal();
-});
-
-// Close the modal when the "Close" button is clicked
-document.getElementById("closeModal").addEventListener("click", function () {
-    document.getElementById("modal").close();
-});
-
-// Add group logic goes here (e.g., sending data to server)
-document.getElementById("addGroupBtn").addEventListener("click", function () {
-    const groupName = document.getElementById("groupName").value;
-    const groupCode = document.getElementById("groupCode").value;
-
-    // You can perform additional validation here if needed
-
-    // Example: Sending data to server using fetch API
-    fetch('/your-server-endpoint', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            groupName: groupName,
-            groupCode: groupCode,
-        }),
-    })
-        .then(response => {
-            if (response.ok) {
-                // Success message or redirect to another page
-                alert('Group added successfully!');
-                document.getElementById("modal").close();
-            } else {
-                // Handle error response
-                alert('Failed to add group. Please try again.');
-            }
-        })
-        .catch(error => {
-            // Handle network errors
-            console.error('Error:', error);
-            alert('Network error occurred. Please try again.');
-        });
-});
-  </script>
 
   </body>
 </html>

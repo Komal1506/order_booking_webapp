@@ -249,9 +249,10 @@ app.post("/update-data",(req,res)=>
   const oprate = req.body.oprate;
   const opamount = req.body.opamount;
   var id = req.body.id;
+
   console.log("connect update  succssfully");
 
-  var sql  ="update item  set item_code=?,item_name=?,barcode=?,hsncode=?,quantity=?,deptname=?,subdeptname=?,hsngcode=?,pcase=?,trading=?,consu=?,pacunit=?,looseunit=?,convfactor=?,cratesltr=?,rate1=?,rate2=?,rate3=?,Tax=?,taxontax=?,addtax=?,sales=?,purchase=?,reorder=?,opstock=?,maxrate=?,recorder=?,loosestock=?,oprate=?,opamount=? where id = ?"
+  var sql  ="update item  set item_code=?,item_name=?,barcode=?,hsncode=?,quantity=?,deptname=?,subdeptname=?,hsngcode=?,pcase=?,trading=?,consu=?,pacunit=?,looseunit=?,convfactor=?,cratesltr=?,rate1=?,rate2=?,rate3=?,Tax=?,taxontax=?,addtax=?,sales=?,purchase=?,reorder=?,opstock=?,maxrate=?,recorder=?,loosestock=?,oprate=?,opamount=? where id=?"
   con.query(sql,[
     icode,
         iname,
@@ -289,14 +290,22 @@ app.post("/update-data",(req,res)=>
   (error,result)=>
   {
     if(error) console.log(error);
-    else{
+    else
+    {
+
+    // else{
       
-      notifier.notify({
-        title: 'Success',
-        message: 'Data updated successfully!',
+    //   notifier.notify({
+    //     title: 'Success',
+    //     message: 'Data updated successfully!',
         
-    });
-    res.redirect("/search");
+    // });
+    // res.end(" update successfully");
+    // alert("data updated");
+    // res.json({ message: "Data updated successfully" });
+
+    res.sendFile(__dirname + "/Main.html");
+    // res.redirect("/search");
       // res.render("read_item.ejs", { result });
     }
   });
