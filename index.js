@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const notifier = require('node-notifier');
-
+const notifier = require("node-notifier");
+console.log("index file running ");
 const bodyparser = require("body-parser");
 const con = require("./connection");
 app.use(bodyparser.json());
@@ -21,7 +21,7 @@ app.post("/", (req, res) => {
   const iname = req.body.itemName;
   const barcode = req.body.barcode;
   const hsncode = req.body.hsnCode;
-  const quantity= req.body.quantity;
+  const quantity = req.body.quantity;
   const deptname = req.body.deptName;
   const subdname = req.body.subDeptName;
   const hsngcode = req.body.hsnGroupCode;
@@ -120,10 +120,8 @@ app.post("/", (req, res) => {
 //   });
 // });
 
-
 // Define a route to handle the search request
-app.get("/search", (req, res) => 
-{
+app.get("/search", (req, res) => {
   // Get the search value from the query parameters
   const searchValue = req.query.searchValue;
   // Construct the SQL query to search for the item in the database
@@ -149,7 +147,6 @@ app.get("/land_page", (req, res) => {
   res.sendFile(__dirname + "/LandPage.html");
 });
 
-
 // app.get("/login_pg", (req, res) => {
 //   res.sendFile(__dirname + "/login.html");
 // });
@@ -159,23 +156,16 @@ app.get("/backtomain", (req, res) => {
 });
 
 app.get("/delete_item", (req, res) => {
-  con.query(
-    "delete from item where id=?",
-    [req.query.id],
-    (err, eachrow) => {
-      if (err)
-     {
-        console.log(err);
-      } 
-      else
-       {
-        // results = JSON.parse(JSON.stringify(eachrow[0]));
-        // console.log(results);
-        // res.render("edit.ejs", { results });
-        res.end("record deleted successfully");
-      }
+  con.query("delete from item where id=?", [req.query.id], (err, eachrow) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // results = JSON.parse(JSON.stringify(eachrow[0]));
+      // console.log(results);
+      // res.render("edit.ejs", { results });
+      res.end("record deleted successfully");
     }
-  );
+  });
 });
 // app.get("/search_p", (req, res) => {
 //   // Get the search value from the query parameters
@@ -206,7 +196,7 @@ app.get("/update-data", (req, res) => {
       } else {
         // results = JSON.parse(JSON.stringify(eachrow[0]));
         console.log("hiiiii");
-        res.render(__dirname+"/update-data",{item:eachrow});
+        res.render(__dirname + "/update-data", { item: eachrow });
         // res.sendFile(__dirname+"/update-data");
         // res.end("updated successfully");
         // res.render("edit.ejs", { results });
@@ -215,9 +205,7 @@ app.get("/update-data", (req, res) => {
   );
 });
 
-app.post("/update-data",(req,res)=>
-{
-  
+app.post("/update-data", (req, res) => {
   const icode = req.body.itemCode;
   const iname = req.body.itemName;
   const barcode = req.body.barcode;
@@ -252,79 +240,77 @@ app.post("/update-data",(req,res)=>
 
   console.log("connect update  succssfully");
 
-  var sql  ="update item  set item_code=?,item_name=?,barcode=?,hsncode=?,quantity=?,deptname=?,subdeptname=?,hsngcode=?,pcase=?,trading=?,consu=?,pacunit=?,looseunit=?,convfactor=?,cratesltr=?,rate1=?,rate2=?,rate3=?,Tax=?,taxontax=?,addtax=?,sales=?,purchase=?,reorder=?,opstock=?,maxrate=?,recorder=?,loosestock=?,oprate=?,opamount=? where id=?"
-  con.query(sql,[
-    icode,
-        iname,
-        barcode,
-        hsncode,
-        quantity,
-        deptname,
-        subdname,
-        hsngcode,
-        
-        pcase,
-        trading,
-        consu,
-        pacunit,
-        looseunit,
-        convfactor,
-        cratesltr,
-        rate1,
-        rate2,
-        rate3,
-        tax,
-        taxontax,
-        addtax,
-        sales,
-        purchase,
-        reorder,
-        opstock,
-        maxrate,
-        recorder,
-        loosestock,
-        oprate,
-        opamount,
-        id,
-  ],
-  (error,result)=>
-  {
-    if(error) console.log(error);
-    else
-    {
+  var sql =
+    "update item  set item_code=?,item_name=?,barcode=?,hsncode=?,quantity=?,deptname=?,subdeptname=?,hsngcode=?,pcase=?,trading=?,consu=?,pacunit=?,looseunit=?,convfactor=?,cratesltr=?,rate1=?,rate2=?,rate3=?,Tax=?,taxontax=?,addtax=?,sales=?,purchase=?,reorder=?,opstock=?,maxrate=?,recorder=?,loosestock=?,oprate=?,opamount=? where id=?";
+  con.query(
+    sql,
+    [
+      icode,
+      iname,
+      barcode,
+      hsncode,
+      quantity,
+      deptname,
+      subdname,
+      hsngcode,
 
-    // else{
-      
-    //   notifier.notify({
-    //     title: 'Success',
-    //     message: 'Data updated successfully!',
-        
-    // });
-    // res.end(" update successfully");
-    // alert("data updated");
-    // res.json({ message: "Data updated successfully" });
+      pcase,
+      trading,
+      consu,
+      pacunit,
+      looseunit,
+      convfactor,
+      cratesltr,
+      rate1,
+      rate2,
+      rate3,
+      tax,
+      taxontax,
+      addtax,
+      sales,
+      purchase,
+      reorder,
+      opstock,
+      maxrate,
+      recorder,
+      loosestock,
+      oprate,
+      opamount,
+      id,
+    ],
+    (error, result) => {
+      if (error) console.log(error);
+      else {
+        // else{
 
-    res.sendFile(__dirname + "/Main.html");
-    // res.redirect("/search");
-      // res.render("read_item.ejs", { result });
+        //   notifier.notify({
+        //     title: 'Success',
+        //     message: 'Data updated successfully!',
+
+        // });
+        // res.end(" update successfully");
+        // alert("data updated");
+        // res.json({ message: "Data updated successfully" });
+
+        res.sendFile(__dirname + "/Main.html");
+        // res.redirect("/search");
+        // res.render("read_item.ejs", { result });
+      }
     }
-  });
-
+  );
 });
 
-
-
-app.post('/groups', (req, res) => {
+app.post("/groups", (req, res) => {
   const { groupName, groupCode } = req.body;
-  const sql = 'INSERT INTO groups (groupName, groupCode) VALUES (?, ?)';
+  const sql = "INSERT INTO groups (groupName, groupCode) VALUES (?, ?)";
   connection.query(sql, [groupName, groupCode], (err, result) => {
-      if (err) {
-          console.error('Error adding group: ', err);
-          res.status(500).send('Error adding group');
-          return;
-      }
-      console.log('Group added successfully');
-      res.status(200).send('Group added successfully');
+    if (err) {
+      console.error("Error adding group: ", err);
+      res.status(500).send("Error adding group");
+      return;
+    }
+    console.log("Group added successfully");
+    res.status(200).send("Group added successfully");
   });
 });
 app.listen(5000);
