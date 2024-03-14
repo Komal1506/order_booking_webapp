@@ -498,4 +498,27 @@
     
 
   </body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBatxGYaZvOhyUVjMk4p0Dc5r9783balS4",
+      authDomain: "order-booking-web-app.firebaseapp.com",
+      projectId: "order-booking-web-app",
+      storageBucket: "order-booking-web-app.appspot.com",
+      messagingSenderId: "540551694952",
+      appId: "1:540551694952:web:d2c1c2cdfccab9e82109dd",
+      measurementId: "G-BKNMS7EC3V"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </html>
